@@ -4,7 +4,7 @@ import API from '../services/API'
 
 export default class CountryDetails extends Component {
   state = {
-    country: [],
+    country: {},
   }
 
 componentDidMount() {
@@ -16,7 +16,7 @@ componentDidMount() {
   await API.get(`/name/${ name }`,)
   .then(result => {
     this.setState({
-      country: result.data
+      country: result.data[0]
     })
     console.log(this.state.country)
   })

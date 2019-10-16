@@ -10,8 +10,6 @@ import API from '../services/API'
 
 import CountryDetails from '../pages/CountryDetails'
 
-// import { Container } from './styles';
-
 export default function CountryList() {
   const [data, setData] = useState({ countries: [] })
 
@@ -41,9 +39,11 @@ export default function CountryList() {
 
   return (
     <Router>
-      <div>
-      <h1>Country List</h1>
-      <ul style={listStyle}>
+      <Switch>
+      <Route exact path="/">
+        <div>
+        <h1>Country List</h1>
+        <ul style={listStyle}>
         { data.countries.map(country => (
           <Link to={`/${country.name}`} key={ country.alpha3Code }>
             <li style={listItem}>
@@ -53,10 +53,10 @@ export default function CountryList() {
           </Link>
         )) }
       </ul>
-      <Switch>
+      </div>
+      </Route>
         <Route path="/:name" exact strict component={ CountryDetails } />
       </Switch>
-      </div>
     </Router>
   );
 }
